@@ -6,6 +6,9 @@ def is_sorted(items):
     TODO: Running time: ??? Why and under what conditions?
     TODO: Memory usage: ??? Why and under what conditions?"""
     # TODO: Check that all adjacent items are in order, return early if so
+    if len(items) == 0:
+        return True
+
     prev = items[0]
 
     for item in items:
@@ -21,6 +24,24 @@ def bubble_sort(items):
     TODO: Memory usage: ??? Why and under what conditions?"""
     # TODO: Repeat until all items are in sorted order
     # TODO: Swap adjacent items that are out of order
+    
+
+    while is_sorted(items) == False:
+        left_index = 0
+        right_index = 1
+
+        while right_index <= len(items) - 1:
+
+            if items[right_index] < items[left_index]:
+                #swap
+                left_var = items[left_index]
+                items[left_index] = items[right_index]
+                items[right_index] = left_var
+
+            left_index += 1
+            right_index += 1
+
+    return items
 
 
 def selection_sort(items):
@@ -45,7 +66,9 @@ def insertion_sort(items):
 
 if __name__ == "__main__":
     order = [1, 2, 3, 10, 40]
-    messy = [8,3,9]
+    messy = [8,3,9,4,2,40,2,80,43]
 
     print(is_sorted(order))
     print(is_sorted(messy))
+
+    print(bubble_sort(messy))
