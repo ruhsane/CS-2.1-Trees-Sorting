@@ -6,10 +6,29 @@ def merge(items1, items2):
     and return a new list containing all items in sorted order.
     TODO: Running time: ??? Why and under what conditions?
     TODO: Memory usage: ??? Why and under what conditions?"""
-    # TODO: Repeat until one list is empty
+    # TODO: Repeat until one list is emptys
     # TODO: Find minimum item in both lists and append it to new list
     # TODO: Append remaining items in non-empty list to new list
 
+    pointer = 0
+    second_pointer = 0
+    merged = []
+
+    while pointer < len(items1) and second_pointer < len(items2):
+        print(pointer)
+        if items1[pointer] < items2[second_pointer]:
+            merged.append(items1[pointer])
+            pointer += 1
+            if pointer == len(items1):
+                merged += items2[second_pointer:]
+
+        else:
+            merged.append(items2[second_pointer])
+            second_pointer += 1
+            if second_pointer == len(items2):
+                merged += items1[pointer:]
+
+    return merged
 
 def split_sort_merge(items):
     """Sort given items by splitting list into two approximately equal halves,
@@ -20,6 +39,7 @@ def split_sort_merge(items):
     # TODO: Split items list into approximately equal halves
     # TODO: Sort each half using any other sorting algorithm
     # TODO: Merge sorted halves into one list in sorted order
+
 
 
 def merge_sort(items):
@@ -57,3 +77,5 @@ def quick_sort(items, low=None, high=None):
     # TODO: Check if list or range is so small it's already sorted (base case)
     # TODO: Partition items in-place around a pivot and get index of pivot
     # TODO: Sort each sublist range by recursively calling quick sort
+
+print(merge([0,1,5,7,20],[2,3,4,10]))
