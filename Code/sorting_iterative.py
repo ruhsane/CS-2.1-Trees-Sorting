@@ -3,9 +3,9 @@
 
 def is_sorted(items):
     """Return a boolean indicating whether given items are in sorted order.
-    TODO: Running time: ??? Why and under what conditions?
-    TODO: Memory usage: ??? Why and under what conditions?"""
-    # TODO: Check that all adjacent items are in order, return early if so
+    Running time: O(n) Why and under what conditions?
+    Memory usage: O(1) Why and under what conditions?"""
+    # Check that all adjacent items are in order, return early if so
     if len(items) == 0:
         return True
 
@@ -52,6 +52,19 @@ def selection_sort(items):
     # TODO: Repeat until all items are in sorted order
     # TODO: Find minimum item in unsorted items
     # TODO: Swap it with first unsorted item
+
+    pointer_to_unsorted = 0
+    sorted_list = []
+
+    # loop through all the items
+    # if item is less than our currently pointed unsorted item, compare it to the temporary shortest item we have - initialized as the currently pointed unsorted. 
+    # if less, shortest_temp variable is now assigned to this item
+    for item in items:
+        shortest_temp = items[pointer_to_unsorted]
+        if item < items[pointer]:
+            if item < shortest_temp:
+                shortest_temp = item
+            pointer += 1
 
 
 def insertion_sort(items):

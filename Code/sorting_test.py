@@ -215,7 +215,8 @@ def get_sort_function():
 
 
 # If using PyTest, change this variable to the sort function you want to test
-sort = bubble_sort
+# sort = bubble_sort
+sort = split_sort_merge
 
 
 if __name__ == '__main__':
