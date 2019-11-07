@@ -77,6 +77,20 @@ def insertion_sort(items):
     # TODO: Take first unsorted item
     # TODO: Insert it in sorted order in front of items
 
+    for unsorted_index in range(1, len(items)):
+
+        comparing_item = items[unsorted_index]
+        comparing_item_index = unsorted_index
+
+        for first_half_index in range(unsorted_index-1, -1, -1):
+            
+            if items[first_half_index] > comparing_item:
+                need_move = items.pop(comparing_item_index)
+                items.insert(first_half_index, need_move)
+                comparing_item_index = first_half_index
+        
+    return items
+
 
 if __name__ == "__main__":
     order = [1, 2, 3, 10, 40]
@@ -85,4 +99,4 @@ if __name__ == "__main__":
     print(is_sorted(order))
     print(is_sorted(messy))
 
-    print(selection_sort(messy))
+    print(insertion_sort(messy))
