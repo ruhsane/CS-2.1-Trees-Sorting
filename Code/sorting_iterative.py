@@ -20,10 +20,10 @@ def is_sorted(items):
 def bubble_sort(items):
     """Sort given items by swapping adjacent items that are out of order, and
     repeating until all items are in sorted order.
-    TODO: Running time: ??? Why and under what conditions?
-    TODO: Memory usage: ??? Why and under what conditions?"""
-    # TODO: Repeat until all items are in sorted order
-    # TODO: Swap adjacent items that are out of order
+    Running time: Worst case O(n^2), best case O(n) where it is already sorted
+    Memory usage: O(1) for only some variables"""
+    # Repeat until all items are in sorted order
+    # Swap adjacent items that are out of order
     
 
     while is_sorted(items) == False:
@@ -71,11 +71,11 @@ def selection_sort(items):
 def insertion_sort(items):
     """Sort given items by taking first unsorted item, inserting it in sorted
     order in front of items, and repeating until all items are in order.
-    TODO: Running time: ??? Why and under what conditions?
-    TODO: Memory usage: ??? Why and under what conditions?"""
-    # TODO: Repeat until all items are in sorted order
-    # TODO: Take first unsorted item
-    # TODO: Insert it in sorted order in front of items
+    Running time: Worst case O(n^2) when we need to loop through all and compare to all. Best case O(n) when it is already sorted
+    Memory usage: O(1) for variable storage"""
+    # Repeat until all items are in sorted order
+    # Take first unsorted item
+    # Insert it in sorted order in front of items
 
     for unsorted_index in range(1, len(items)):
 
@@ -88,6 +88,8 @@ def insertion_sort(items):
                 need_move = items.pop(comparing_item_index)
                 items.insert(first_half_index, need_move)
                 comparing_item_index = first_half_index
+            else:
+                break
         
     return items
 
