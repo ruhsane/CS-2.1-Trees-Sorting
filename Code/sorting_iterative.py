@@ -47,24 +47,25 @@ def bubble_sort(items):
 def selection_sort(items):
     """Sort given items by finding minimum item, swapping it with first
     unsorted item, and repeating until all items are in sorted order.
-    TODO: Running time: ??? Why and under what conditions?
-    TODO: Memory usage: ??? Why and under what conditions?"""
-    # TODO: Repeat until all items are in sorted order
-    # TODO: Find minimum item in unsorted items
-    # TODO: Swap it with first unsorted item
+    Running time: O(n^2) Beucase we need to loop through all of the items, and for each loop, we have to find a minimum item which requires another loop
+    Memory usage: O(1) because we are only creating a shortest_index variable, result items swapped in place"""
+    # Repeat until all items are in sorted order
+    # Find minimum item in unsorted items
+    # wap it with first unsorted item
 
-    pointer_to_unsorted = 0
-    sorted_list = []
-
-    # loop through all the items
-    # if item is less than our currently pointed unsorted item, compare it to the temporary shortest item we have - initialized as the currently pointed unsorted. 
+    # loop through in range of items length
+    # compare to see if item is less than temporary shortest item we have - initialized as the currently pointed unsorted. 
     # if less, shortest_temp variable is now assigned to this item
-    for item in items:
-        shortest_temp = items[pointer_to_unsorted]
-        if item < items[pointer]:
-            if item < shortest_temp:
-                shortest_temp = item
-            pointer += 1
+    # swap unsorted item with the shortest item
+
+    for unsorted_item_index in range(len(items)):
+        shortest_index = unsorted_item_index
+
+        for i in range(unsorted_item_index, len(items)):
+            if items[i] < items[shortest_index]:
+                shortest_index = i
+        items[shortest_index], items[unsorted_item_index] = items[unsorted_item_index], items[shortest_index] 
+    return items
 
 
 def insertion_sort(items):
@@ -84,4 +85,4 @@ if __name__ == "__main__":
     print(is_sorted(order))
     print(is_sorted(messy))
 
-    print(bubble_sort(messy))
+    print(selection_sort(messy))
