@@ -43,6 +43,18 @@ class PrefixTree:
     def contains(self, string):
         """Return True if this prefix tree contains the given string."""
         # TODO
+        root = self.root
+        index = 0
+        for char in string:
+            if not root.has_child(char):
+                return False
+            root = root.get_child(char)
+            index += 1
+
+            if index == len(string):
+                if not root.terminal:
+                    return False
+        return True
         
 
     def insert(self, string):
