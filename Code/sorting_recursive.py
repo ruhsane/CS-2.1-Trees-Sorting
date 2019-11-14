@@ -92,6 +92,43 @@ def partition(items, low, high):
     # TODO: Move items less than pivot into front of range [low...p-1]
     # TODO: Move items greater than pivot into back of range [p+1...high]
     # TODO: Move pivot item into final position [p] and return index p
+    
+    pivot = items[low]
+    pivot_index = low
+
+    for i in range(low+1, high+1):
+        if items[i] < pivot:
+            items.insert(low, items.pop(i))
+            pivot_index += 1
+
+    # mid = (low + high) // 2
+    # l = list(sorted([items[low], items[mid], items[high]]))
+    # pivot = l[1]
+
+    # if pivot == items[low]:
+    #     pivot_index = low
+    # elif pivot == items[high]:
+    #     pivot_index = high
+    # elif pivot == items[mid]:
+    #     pivot_index = mid
+
+    # for index in range(low, high+1):
+    #     print(index)
+    #     print(items)
+    #     if items[index] <= pivot:
+            
+    #         if index > pivot_index:
+    #             items.insert(low, items.pop(index))
+    #             pivot_index += 1
+
+    #     else:
+
+    #         if index < pivot_index:
+    #             items.insert(high, items.pop(index))
+    #             pivot_index -= 1
+
+    print(items)
+    return pivot_index
 
 
 def quick_sort(items, left_pointer=None, right_pointer=None):
@@ -104,32 +141,25 @@ def quick_sort(items, left_pointer=None, right_pointer=None):
     # TODO: Check if list or range is so small it's already sorted (base case)
     # TODO: Partition items in-place around a pivot and get index of pivot
     # TODO: Sort each sublist range by recursively calling quick sort
+    if len(items) == 0 or len(items) == 1:
+        return
 
-    # if left_pointer and right_pointer is None:
-    #     left_pointer = 0
-    #     right_pointer = len(items) - 1
+    if left_pointer == None and right_pointer == None:
+        left_pointer = 0
+        right_pointer = len(items) -1
 
-    # pivot = random.randrange(1, len(items)-2)
+    if left_pointer >= right_pointer:
+        return items
 
-    # for item in items[:pivot] :
-    #     if items[left_pointer] <= pivot:
-    #         left_pointer += 1
-    #     else:
-    #         need_swap_pointer = left_pointer
-
-    # for item in items[pivot:] :
-    #     if items[right_pointer] > pivot:
-    #         right_pointer -= 1
-    #     else:
-    #         need_swap2_pointer = right_pointer
-
-    # if need_swap_pointer and need_swap2_pointer :
-    #     items[need_swap_pointer] , items[need_swap2_pointer] = items[need_swap2_pointer], items[need_swap_pointer]
-    # elif need_swap_pointer and need_swap2_pointer is ValueError:
+    pivot_index = partition(items, left_pointer, right_pointer)
+    quick_sort(items, left_pointer, pivot_index)
+    quick_sort(items, pivot_index + 1, right_pointer)
+    return items
 
 
 if __name__ == "__main__":
     # print(merge([0,1,5,7,20],[2,3,4,10]))
 
     # print(split_sort_merge([1,8,2,6,3]))
-    print(quick_sort([1,8,2,6,3]))
+    # print(partition([1,8,2,6,3],0,2))
+    print(quick_sort([1,8,2,2,6,3,0,5],0,7))
