@@ -67,18 +67,17 @@ def merge_sort(items):
     # TODO: Sort each half by recursively calling merge sort
     # TODO: Merge sorted halves into one list in sorted order
 
-    if len(items) == 0 or len(items) == 1:
+    if len(items) <= 1:
         return items
 
     middle = len(items) // 2
     first_half_sort = merge_sort(items[:middle])
     last_half_sort = merge_sort(items[middle:])
 
-    # return merge(first_half_sort, last_half_sort)
     sorted_items = merge(first_half_sort, last_half_sort)
-    # for i, item in enumerate(merge(first_half_sort, last_half_sort)):
-    #     items[i] = item
     items[:] = sorted_items
+
+    return items
 
 def partition(items, low, high):
     """Return index `p` after in-place partitioning given items in range
@@ -101,6 +100,7 @@ def partition(items, low, high):
             items.insert(low, items.pop(i))
             pivot_index += 1
 
+    # tried to choose different pivot below, didn't work
     # mid = (low + high) // 2
     # l = list(sorted([items[low], items[mid], items[high]]))
     # pivot = l[1]
