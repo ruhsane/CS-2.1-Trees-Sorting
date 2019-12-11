@@ -35,27 +35,16 @@ class PrefixTree:
 
     def is_empty(self):
         """Return True if this prefix tree is empty (contains no strings)."""
-        # TODO
-        if self.size == 0:
-            return True
-        return False
+        return self.size == 0
 
     def contains(self, string):
         """Return True if this prefix tree contains the given string."""
-        # TODO
-        root = self.root
-        index = 0
-        for char in string:
-            if not root.has_child(char):
-                return False
-            root = root.get_child(char)
-            index += 1
+        node, _ = self._find_node(string)
 
-            if index == len(string):
-                if not root.terminal:
-                    return False
-        return True
-        
+        if node is not None and node.terminal:
+            return True
+
+        return False
 
     def insert(self, string):
         """Insert the given string into this prefix tree."""
@@ -87,7 +76,21 @@ class PrefixTree:
             return self.root, 0
         # Start with the root node
         node = self.root
-        # TODO
+        depth = 0
+        for char in string:
+            if not node.has_child(char):
+                return None, depth
+            node = node.get_child(char)
+
+            if depth == len(string):
+                if not node.terminal:
+                    return None, depth
+
+            depth +=1 
+
+        return node, depth
+
+        
 
     def complete(self, prefix):
         """Return a list of all strings stored in this prefix tree that start
@@ -159,7 +162,12 @@ if __name__ == '__main__':
         #                ' if a wood chuck could chuck wood').split()
     }
     # Create a prefix tree with the similar words in each tongue-twister
-    for name, strings in tongue_twisters.items():
-        print('\n' + '='*80 + '\n')
-        print(f'{name} tongue-twister:')
-        create_prefix_tree(strings)
+    # for name, strings in tongue_twisters.items():
+    #     print('\n' + '='*80 + '\n')
+    #     print(f'{name} tongue-twister:')
+    #     create_prefix_tree(strings)
+
+    # print(_find_node(tongue_twisters[0]))
+    tree = PrefixTree()
+    tree.insert('shelly')
+    print(tree._find_node('she'))
