@@ -4,8 +4,8 @@
 def counting_sort(numbers):
     """Sort given numbers (integers) by counting occurrences of each number,
     then looping over counts and copying that many numbers into output list.
-    TODO: Running time: ??? Why and under what conditions?
-    TODO: Memory usage: ??? Why and under what conditions?"""
+    Running time: O(n) where n is amount of numbers
+    Memory usage: O(n) where n is amount of numbers"""
     # Find range of given numbers (minimum and maximum integer values)
     minimum = min(numbers)
     maximum  = max(numbers)
