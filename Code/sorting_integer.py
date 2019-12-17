@@ -6,6 +6,10 @@ def counting_sort(numbers):
     then looping over counts and copying that many numbers into output list.
     Running time: O(n) where n is amount of numbers
     Memory usage: O(n) where n is amount of numbers"""
+    # handle edge case where array is empty
+    if len(numbers) <= 0:
+        return numbers
+
     # Find range of given numbers (minimum and maximum integer values)
     minimum = min(numbers)
     maximum  = max(numbers)
@@ -24,10 +28,9 @@ def counting_sort(numbers):
         number = index + minimum
         if count > 0:
             output.extend([number] * count)
-    return output
-
+            
     # FIXME: Improve this to mutate input instead of creating new output list
-
+    numbers[:] = output
 
 def bucket_sort(numbers, num_buckets=10):
     """Sort given numbers by distributing into buckets representing subranges,
